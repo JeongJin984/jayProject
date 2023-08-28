@@ -1,4 +1,4 @@
-package com.jay.orderserver.domain.jayMarket.entity
+package com.jay.orderserver.domain.entity
 
 import jakarta.persistence.*
 import java.lang.IllegalArgumentException

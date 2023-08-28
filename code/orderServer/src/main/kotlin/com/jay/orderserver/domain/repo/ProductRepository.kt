@@ -1,6 +1,6 @@
-package com.jay.orderserver.domain.jayMarket.repo
+package com.jay.orderserver.domain.repo
 
-import com.jay.orderserver.domain.jayMarket.entity.Product
+import com.jay.orderserver.domain.entity.Product
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface ProductRepository : JpaRepository<Product, Long> {

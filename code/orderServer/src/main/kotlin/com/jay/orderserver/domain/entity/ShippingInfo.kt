@@ -1,7 +1,7 @@
-package com.jay.orderserver.domain.jayMarket.entity
+package com.jay.orderserver.domain.entity
 
-import com.jay.orderserver.domain.jayMarket.entity.Address
-import com.jay.orderserver.domain.jayMarket.entity.Receiver
+import com.jay.orderserver.domain.entity.Address
+import com.jay.orderserver.domain.entity.Receiver
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

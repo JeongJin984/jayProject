@@ -19,7 +19,7 @@ import javax.sql.DataSource
 @Configuration
 @Profile("dev")
 @EnableJpaRepositories(
-    basePackages = ["com.jay.orderserver.domain.jayMarket.repo"],
+    basePackages = ["com.jay.orderserver.domain.repo"],
     entityManagerFactoryRef = "jayMarketEntityManagerFactory",
     transactionManagerRef = "jayMarketTransactionManager"
 )
@@ -38,7 +38,7 @@ class DevDBConfig {
 
         val entityManagerFactoryBean = builder
             .dataSource(datasource())
-            .packages("com.jay.orderserver.domain.jayMarket.entity")
+            .packages("com.jay.orderserver.domain.entity")
             .persistenceUnit("jayMarketEntityManager")
             .build()
 
