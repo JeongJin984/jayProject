@@ -1,7 +1,9 @@
-package com.jay.orderserver.infra.db
+package com.jay.memberserver.infra.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import jakarta.persistence.EntityManagerFactory
+import org.hibernate.Hibernate
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder
 import org.springframework.context.annotation.Bean
@@ -17,17 +19,17 @@ import javax.sql.DataSource
 @Configuration
 @Profile("dev")
 @EnableJpaRepositories(
-    basePackages = ["com.jay.orderserver.domain.repo"],
-    entityManagerFactoryRef = "jayMemberEntityManagerFactory",
-    transactionManagerRef = "jayMemberTransactionManager"
+    basePackages = ["com.jay.memberserver.domain.repo"],
+    entityManagerFactoryRef = "jayMarketEntityManagerFactory",
+    transactionManagerRef = "jayMarketTransactionManager"
 )
 class DevDBConfig {
-    @Bean("jayMemberDatasource")
+    @Bean("jayMarketDatasource")
     fun datasource(): DataSource {
         return HikariDataSource(HikariConfig("/datasource/dev.master.datasource.properties"))
     }
 
-    @Bean("jayMemberEntityManagerFactory")
+    @Bean("jayMarketEntityManagerFactory")
     fun entityManagerFactory(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
         val adaptor = HibernateJpaVendorAdapter()
         adaptor.setShowSql(true)
@@ -36,8 +38,8 @@ class DevDBConfig {
 
         val entityManagerFactoryBean = builder
             .dataSource(datasource())
-            .packages("com.jay.orderserver.domain.entity")
-            .persistenceUnit("jayMemberEntityManager")
+            .packages("com.jay.memberserver.domain.entity")
+            .persistenceUnit("jayMarketEntityManager")
             .build()
 
         entityManagerFactoryBean
@@ -46,9 +48,9 @@ class DevDBConfig {
         return entityManagerFactoryBean
     }
 
-    @Bean("jayMemberTransactionManager")
+    @Bean("jayMarketTransactionManager")
     fun jayMarketTransactionManager(
-        @Qualifier("jayMemberEntityManagerFactory") factoryBean: LocalContainerEntityManagerFactoryBean): PlatformTransactionManager {
+        @Qualifier("jayMarketEntityManagerFactory") factoryBean: LocalContainerEntityManagerFactoryBean): PlatformTransactionManager {
         return JpaTransactionManager(factoryBean.`object`!!)
     }
 }
