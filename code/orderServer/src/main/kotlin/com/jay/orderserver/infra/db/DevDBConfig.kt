@@ -22,12 +22,12 @@ import javax.sql.DataSource
     transactionManagerRef = "jayMemberTransactionManager"
 )
 class DevDBConfig {
-    @Bean("jayMemberDatasource")
+    @Bean("datasource")
     fun datasource(): DataSource {
         return HikariDataSource(HikariConfig("/datasource/dev.master.datasource.properties"))
     }
 
-    @Bean("jayMemberEntityManagerFactory")
+    @Bean("entityManagerFactory")
     fun entityManagerFactory(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
         val adaptor = HibernateJpaVendorAdapter()
         adaptor.setShowSql(true)
@@ -46,9 +46,9 @@ class DevDBConfig {
         return entityManagerFactoryBean
     }
 
-    @Bean("jayMemberTransactionManager")
+    @Bean("transactionManager")
     fun jayMarketTransactionManager(
-        @Qualifier("jayMemberEntityManagerFactory") factoryBean: LocalContainerEntityManagerFactoryBean): PlatformTransactionManager {
+        @Qualifier("entityManagerFactory") factoryBean: LocalContainerEntityManagerFactoryBean): PlatformTransactionManager {
         return JpaTransactionManager(factoryBean.`object`!!)
     }
 }

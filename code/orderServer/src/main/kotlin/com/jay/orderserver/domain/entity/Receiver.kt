@@ -10,5 +10,4 @@ abstract class Receiver (
 
     @Column(name = "phone")
     var phone: String
-) {
-}
+) {}

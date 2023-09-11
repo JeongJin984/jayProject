@@ -6,7 +6,7 @@ create table order_list (
     product_id bigint,
     product_order_id bigint,
     primary key (id)
-) engine=InnoDBl;
+) engine=InnoDB;
 
 create table product (
     id bigint not null auto_increment,
