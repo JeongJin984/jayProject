@@ -30,3 +30,8 @@
 - VmWare
 - AWS(Optional)
 
+## 특이사항
+
+1. 편의를 위해 다수의 데이터베이스 생성 X(Schema로 분리)
+2. Kubernetes 사용 X
+3. 
