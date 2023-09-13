@@ -3,8 +3,8 @@ package com.jay.orderserver.domain.entity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "order_list")
-class OrderList (
+@Table(name = "order_line")
+class OrderLine (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

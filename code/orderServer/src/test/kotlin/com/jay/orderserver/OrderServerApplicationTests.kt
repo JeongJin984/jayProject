@@ -9,5 +9,4 @@ class OrderServerApplicationTests {
 	@Test
 	fun contextLoads() {
 	}
-
 }

@@ -12,7 +12,7 @@ class ProductOrder (
     var orderId: Long? = null,
 
     @OneToMany(mappedBy = "productOrder", fetch = FetchType.LAZY)
-    var orderLists: List<OrderList> = listOf(),
+    var orderLines: List<OrderLine> = listOf(),
 
     @Column(name = "total_amounts")
     var totalAmounts: Int? = null,
@@ -24,20 +24,20 @@ class ProductOrder (
     @JoinColumn(name = "shipping_info_id")
     var shippingInfo: ShippingInfo? = null
 ) {
-    private fun setOrderLines(orderLists: List<OrderList>) {
-        verifyAtLeastOneOrMoreOrderLines(orderLists)
-        this.orderLists = orderLists
+    private fun setOrderLines(orderLines: List<OrderLine>) {
+        verifyAtLeastOneOrMoreOrderLines(orderLines)
+        this.orderLines = orderLines
         calculateTotalAmounts()
     }
 
-    private fun verifyAtLeastOneOrMoreOrderLines(orderLists: List<OrderList>?) {
-        if(orderLists.isNullOrEmpty()) {
+    private fun verifyAtLeastOneOrMoreOrderLines(orderLines: List<OrderLine>?) {
+        if(orderLines.isNullOrEmpty()) {
             throw IllegalArgumentException("no OrderLines")
         }
     }
 
     private fun calculateTotalAmounts() : Int? {
-        this.totalAmounts = orderLists.sumOf { it.amount!! }
+        this.totalAmounts = orderLines.sumOf { it.amount!! }
         return this.totalAmounts
     }
 
@@ -50,6 +50,26 @@ class ProductOrder (
         this.orderState = OrderState.CANCELED
     }
 
+    fun confirm() {
+        this.orderState = OrderState.PAYMENT_WAITING
+    }
+
+    fun paymentSucceed() {
+        this.orderState = OrderState.PREPARING
+    }
+
+    fun deliverStarted() {
+        this.orderState = OrderState.DELIVERING
+    }
+
+    fun deliverSucceed() {
+        this.orderState = OrderState.DELIVERY_COMPLETED
+    }
+
+    fun deliverFailed() {
+        this.orderState = OrderState.DELIVERY_FAILED
+    }
+
     private fun verifyNotYetShipped() {
         if(orderState != OrderState.PAYMENT_WAITING && orderState != OrderState.PREPARING)
             throw IllegalArgumentException("already shipped")
@@ -57,5 +77,5 @@ class ProductOrder (
 }
 
 enum class OrderState {
-    PAYMENT_WAITING, PREPARING, SHIPPED, DELIVERING, DELIVERY_COMPLETED, CANCELED;
+    PAYMENT_WAITING, PREPARING, SHIPPED, DELIVERING, DELIVERY_COMPLETED, DELIVERY_FAILED, CANCELED;
 }
