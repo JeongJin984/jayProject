@@ -2,7 +2,6 @@ package com.jay.orderserver.business.service
 
 import com.jay.orderserver.domain.entity.ProductOrder
 import com.jay.orderserver.domain.repo.ProductOrderRepository
-import jakarta.transaction.TransactionScoped
 import jakarta.transaction.Transactional
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
