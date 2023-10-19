@@ -25,7 +25,7 @@
 
 - Elastic Search
 - Kibana
-- FluentD or LogStash
+- LogStash
 - Kafka
 - VmWare
 - AWS(Optional)
