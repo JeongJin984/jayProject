@@ -5,6 +5,7 @@ import com.jay.orderserver.domain.repo.ProductOrderRepository
 import jakarta.transaction.Transactional
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import java.lang.Exception
 import java.util.*
 
 @Service
@@ -16,13 +17,21 @@ class OrderService(
 
     @Transactional
     fun confirmOrder(orderId : Long) {
-        val productOrder : Optional<ProductOrder> = productOrderRepository.findById(orderId)
+        val productOrderWrap : Optional<ProductOrder> = productOrderRepository.findById(orderId)
 
-        if(productOrder.isEmpty) {
+        if(productOrderWrap.isEmpty) {
             log.error("No Such Order / orderId : {}", orderId)
             throw IllegalArgumentException("No Such Order / orderId: $orderId")
         }
 
-        productOrder.get().confirm()\
+        val productOrder = productOrderWrap.get()
+        productOrder.confirm()
+
+        try {
+
+        }catch (e : Exception) {
+            log.error(e);
+        }
+
     }
 }

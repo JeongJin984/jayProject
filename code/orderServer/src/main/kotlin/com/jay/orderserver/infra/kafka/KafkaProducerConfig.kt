@@ -2,6 +2,7 @@ package com.jay.orderserver.infra.kafka
 
 import org.apache.kafka.clients.admin.NewTopic
 import org.apache.kafka.clients.producer.ProducerConfig
+import org.apache.kafka.clients.producer.ProducerConfig.*
 import org.apache.kafka.common.serialization.IntegerSerializer
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.context.annotation.Bean
@@ -11,9 +12,8 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.core.ProducerFactory
 
-
 @Configuration
-class KafkaConfig {
+class KafkaProducerConfig {
     @Bean
     fun healCheckTopic() : NewTopic {
         return TopicBuilder.name("healthcheck")
@@ -29,16 +29,15 @@ class KafkaConfig {
 
     @Bean
     fun producerConfigs(): Map<String, Any> {
-        val props: MutableMap<String, Any> = HashMap()
-        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:9092"
-        props[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = IntegerSerializer::class.java
-        props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
-        return props
+        return mapOf(
+            BOOTSTRAP_SERVERS_CONFIG to "localhost:9092",
+            KEY_SERIALIZER_CLASS_CONFIG to IntegerSerializer::class.java,
+            VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java
+        )
     }
 
     @Bean
     fun kafkaTemplate(): KafkaTemplate<Int?, String?> {
         return KafkaTemplate(producerFactory())
     }
-
 }
