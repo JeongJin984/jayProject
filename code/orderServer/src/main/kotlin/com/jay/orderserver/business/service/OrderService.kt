@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 @Service
 class OrderService(
     val productOrderRepository : ProductOrderRepository,
-    val replyTemplate: ReplyingKafkaTemplate<String,String,String>
+    val replyTemplate: ReplyingKafkaTemplate<String,String,String>,
     val mapper : ObjectMapper
 ) {
 
