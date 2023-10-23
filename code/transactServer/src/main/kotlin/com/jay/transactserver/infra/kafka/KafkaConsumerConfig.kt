@@ -13,13 +13,14 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer
 
 @Configuration
 @EnableKafka
-class KafkaConfig {
+class KafkaConsumerConfig {
     @Bean
     fun kafkaListenerContainerFactory() : KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Int, String>> {
         val factory = ConcurrentKafkaListenerContainerFactory<Int, String>()
         factory.consumerFactory = consumerFactory()
         factory.setConcurrency(3)
         factory.containerProperties.pollTimeout = 3000
+        factory.setAutoStartup(true)
         return factory
     }
 

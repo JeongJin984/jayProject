@@ -4,6 +4,9 @@ import com.jay.orderserver.domain.entity.ProductOrder
 import com.jay.orderserver.domain.repo.ProductOrderRepository
 import jakarta.transaction.Transactional
 import org.slf4j.LoggerFactory
+import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.kafka.annotation.PartitionOffset
+import org.springframework.kafka.annotation.TopicPartition
 import org.springframework.stereotype.Service
 import java.lang.Exception
 import java.util.*
@@ -30,8 +33,19 @@ class OrderService(
         try {
 
         }catch (e : Exception) {
-            log.error(e);
+            log.error(e.message);
         }
+    }
+
+    @KafkaListener(
+        id = "saleFailListener",
+        topicPartitions = [
+            TopicPartition(topic = "saleTopic", partitions = ["0"], partitionOffsets = [PartitionOffset(partition = "1", initialOffset = "0")])
+        ],
+        autoStartup = "\${listen.auto.start:true}",
+        concurrency = "\${listen.concurrency:3}"
+    )
+    fun saleFailed() {
 
     }
 }

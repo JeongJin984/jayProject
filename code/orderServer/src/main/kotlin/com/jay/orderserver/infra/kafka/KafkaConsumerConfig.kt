@@ -23,23 +23,23 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer
 class KafkaConsumerConfig {
     @Bean
     fun kafkaListenerContainerFactory() : KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Int, String>> {
-        val factory = ConcurrentKafkaListenerContainerFactory<Int, String>();
+        val factory = ConcurrentKafkaListenerContainerFactory<Int, String>()
         factory.consumerFactory = consumerFactory()
         factory.setConcurrency(3)
         factory.containerProperties.pollTimeout = 3000
+        factory.setAutoStartup(true)
         return factory
     }
 
     @Bean
-    fun consumerFactory() : ConsumerFactory<Int, String> {
+    fun consumerFactory(): ConsumerFactory<Int, String> {
         return DefaultKafkaConsumerFactory(consumerConfigs())
     }
 
-    @Bean
-    fun consumerConfigs() :Map<String, Any> {
-        return mapOf(
-            ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to ""
-        )
+    fun consumerConfigs() : Map<String, Any> {
+        val props = mutableMapOf<String, Any>();
+        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = ""
+        return props
     }
 
 }
