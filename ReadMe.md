@@ -37,7 +37,7 @@
 
 ## 시나리오
 
-> 주문 및 결제 
+### 주문 및 결제 
 
 1. 주문 데이터 생성
 2. 주문 확정
@@ -51,7 +51,9 @@
 1. Kafka를 이용한 보상트랜잭션을 사용하여 에러 처리
 2. replyingKafkaTemplate, kafkaTemplate을 이용하여 동기식, 비동기식으로 메시지 처리
 
-> 검색
+---
+
+### 검색
 
 1. ElasticSearch를 이용하여 상품 데이터 검색 기능 개발
 2. 직접 Index 생성하여 상품 데이터 삽입
@@ -61,7 +63,9 @@
 
 1. ElasticSearch에 대한 이해도 높이기
 
-> 로그 데이터 저장 후 분석
+---
+
+### 로그 데이터 저장 후 분석
 
 1. FileBeat + LogStash + ElasticSearch + Kibana를 이용하여 로그 생성, 저장, 분석 까지의 시퀀스를 구현
 
