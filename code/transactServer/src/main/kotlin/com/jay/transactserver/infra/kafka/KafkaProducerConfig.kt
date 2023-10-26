@@ -10,27 +10,27 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.config.KafkaListenerContainerFactory
 import org.springframework.kafka.core.*
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer
+import org.springframework.kafka.requestreply.ReplyingKafkaTemplate
 
 
 @Configuration
-@EnableKafka
 class KafkaProducerConfig {
     @Bean
-    fun producerFactory(): ProducerFactory<Int?, String?> {
+    fun producerFactory(): ProducerFactory<String, String> {
         return DefaultKafkaProducerFactory(producerConfigs())
     }
 
     @Bean
     fun producerConfigs(): Map<String, Any> {
         return mapOf(
-            ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to "localhost:9092",
-            ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to IntegerSerializer::class.java,
+            ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to "192.168.17.129:9092",
+            ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java
         )
     }
 
     @Bean
-    fun kafkaTemplate(): KafkaTemplate<Int?, String?> {
+    fun kafkaTemplate(): KafkaTemplate<String, String> {
         return KafkaTemplate(producerFactory())
     }
 }

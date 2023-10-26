@@ -21,15 +21,15 @@ import java.util.concurrent.TimeUnit
 
 @Service
 class OrderService(
-    val productOrderRepository : ProductOrderRepository,
-    val replyTemplate: ReplyingKafkaTemplate<String,String,String>,
-    val mapper : ObjectMapper
+    private val productOrderRepository : ProductOrderRepository,
+    private val replyTemplate: ReplyingKafkaTemplate<String,String,String>,
+    private val mapper : ObjectMapper
 ) {
 
     private val log = LoggerFactory.getLogger(OrderService::class.java)
     @Transactional
     fun confirmOrder(orderId : Long) {
-        val productOrderWrap : Optional<ProductOrder> = productOrderRepository.findById(orderId)
+/*        val productOrderWrap : Optional<ProductOrder> = productOrderRepository.findById(orderId)
 
         if(productOrderWrap.isEmpty) {
             log.error("No Such Order / orderId : {}", orderId)
@@ -37,11 +37,12 @@ class OrderService(
         }
 
         val productOrder = productOrderWrap.get()
-        productOrder.confirm()
+        productOrder.confirm()*/
 
         try {
-            val future = replyTemplate.sendAndReceive(ProducerRecord("saleTopic", null, orderId.toString(), mapper.writeValueAsString(productOrder)))
+            val future = replyTemplate.sendAndReceive(ProducerRecord("healthcheck", null, orderId.toString(), "asdf"))
             val response : ConsumerRecord<String, String> = future.get()
+            println(response.value())
         } catch (e : Exception) {
             log.error(e.message)
         }

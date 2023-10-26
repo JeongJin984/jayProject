@@ -12,7 +12,7 @@ class ProductOrder (
     var orderId: Long? = null,
 
     @OneToMany(mappedBy = "productOrder", fetch = FetchType.LAZY)
-    var orderLines: List<OrderLine> = listOf(),
+    var orderLine: List<OrderLine> = listOf(),
 
     @Column(name = "total_amounts")
     var totalAmounts: Int? = null,
@@ -26,7 +26,7 @@ class ProductOrder (
 ) {
     private fun setOrderLines(orderLines: List<OrderLine>) {
         verifyAtLeastOneOrMoreOrderLines(orderLines)
-        this.orderLines = orderLines
+        this.orderLine = orderLines
         calculateTotalAmounts()
     }
 
@@ -37,7 +37,7 @@ class ProductOrder (
     }
 
     private fun calculateTotalAmounts() : Int? {
-        this.totalAmounts = orderLines.sumOf { it.amount!! }
+        this.totalAmounts = orderLine.sumOf { it.amount!! }
         return this.totalAmounts
     }
 

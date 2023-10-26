@@ -18,8 +18,8 @@ import javax.sql.DataSource
 @Profile("dev")
 @EnableJpaRepositories(
     basePackages = ["com.jay.orderserver.domain.repo"],
-    entityManagerFactoryRef = "jayMemberEntityManagerFactory",
-    transactionManagerRef = "jayMemberTransactionManager"
+    entityManagerFactoryRef = "entityManagerFactory",
+    transactionManagerRef = "transactionManager"
 )
 class DevDBConfig {
     @Bean("datasource")
