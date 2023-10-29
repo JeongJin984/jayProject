@@ -27,7 +27,7 @@
 - Kibana
 - LogStash
 - Kafka
-- VmWare
+- Docker (VMware -> Docker : 네트워크 Issue)
 - AWS(Optional)
 
 ## 특이사항
