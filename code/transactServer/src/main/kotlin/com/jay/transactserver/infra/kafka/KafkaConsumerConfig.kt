@@ -36,7 +36,7 @@ class KafkaConsumerConfig {
 
     fun consumerConfigs() : Map<String, Any> {
         return mapOf(
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "192.168.17.129:9092",
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "localhost:29092",
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
         )

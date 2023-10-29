@@ -14,4 +14,9 @@ class OrderAPI(
     fun orderAllOrderList(@RequestParam orderId: Long) {
         orderService.confirmOrder(1L)
     }
+
+    @PostMapping("/order/register")
+    fun registerOrder(@RequestParam orderId: Long) {
+        orderService.confirmOrder(1L)
+    }
 }

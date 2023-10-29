@@ -15,8 +15,8 @@ class ShippingInfo (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    var shippingInfoId: Long? = null,
-    var receiver: Receiver? = null,
-    var address: Address? = null
+    val shippingInfoId: Long? = null,
+    val receiver: Receiver? = null,
+    val address: Address? = null
 ) {
 }

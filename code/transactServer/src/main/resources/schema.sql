@@ -1,9 +1,13 @@
-create table transact.transact (
-    transid bigint not null auto_increment,
-    order_list_id bigint not null,
-    total_amount integer,
-    pay_method tinyint,
-    orderer_id bigint,
-    type tinyint,
-    primary key (transid)
-) engine=InnoDB;
+create table transact (
+    trans_id varchar(255) not null,
+    cardNo varchar(255),
+    description varchar(255),
+    reqDt datetime(6),
+    resCode enum ('CHARGEBACK','PURCHASE_ERROR','PURCHASE_SUCCESS','REJECT','SALE','SERVER_ERROR'),
+    resDt datetime(6),
+    serviceAmount decimal(38,2),
+    serviceFee decimal(38,2),
+    totalAmount decimal(38,2),
+    transType enum ('BUY','REFUND'),
+    primary key (trans_id)
+) engine=InnoDB

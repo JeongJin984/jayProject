@@ -20,13 +20,6 @@ import org.springframework.kafka.requestreply.ReplyingKafkaTemplate
 @Configuration
 @Profile("dev")
 class KafkaProducerConfig {
-    @Bean
-    fun healCheckTopic() : NewTopic {
-        return TopicBuilder.name("healthcheck")
-            .partitions(2)
-            .replicas(2)
-            .build()
-    }
 
     @Bean
     fun producerFactory(): ProducerFactory<String, String> {
@@ -36,7 +29,7 @@ class KafkaProducerConfig {
     @Bean
     fun producerConfigs(): Map<String, Any> {
         return mapOf(
-            BOOTSTRAP_SERVERS_CONFIG to "192.168.17.129:9092",
+            BOOTSTRAP_SERVERS_CONFIG to "localhost:29092",
             KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
             VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java
         )
