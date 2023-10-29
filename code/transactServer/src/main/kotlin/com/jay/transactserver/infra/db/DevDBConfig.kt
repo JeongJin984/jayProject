@@ -1,4 +1,4 @@
-package com.jay.orderserver.infra.db
+package com.jay.transactserver.infra.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -17,7 +17,7 @@ import javax.sql.DataSource
 @Configuration
 @Profile("dev")
 @EnableJpaRepositories(
-    basePackages = ["com.jay.orderserver.domain.repo"],
+    basePackages = ["com.jay.transactserver.data.repo"],
     entityManagerFactoryRef = "entityManagerFactory",
     transactionManagerRef = "transactionManager"
 )
@@ -36,7 +36,7 @@ class DevDBConfig {
 
         val entityManagerFactoryBean = builder
             .dataSource(datasource())
-            .packages("com.jay.orderserver.domain.entity")
+            .packages("com.jay.transactserver.data.entity")
             .persistenceUnit("entityManager")
             .build()
 
