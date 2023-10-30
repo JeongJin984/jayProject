@@ -17,6 +17,7 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.annotation.PartitionOffset
 import org.springframework.kafka.annotation.TopicPartition
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate
+import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.stereotype.Service
 import java.lang.Exception
@@ -49,6 +50,21 @@ class OrderService(
         } catch (e : Exception) {
             log.error(e.message)
         }
+    }
+
+    @KafkaListener(
+        id = "orderCancelListener",
+        topicPartitions = [
+            TopicPartition(topic = "order-cancel", partitions = ["0"], partitionOffsets = [PartitionOffset(partition = "1", initialOffset = "0")])
+        ],
+        autoStartup = "\${listen.auto.start:true}",
+        concurrency = "\${listen.concurrency:2}",
+        groupId = "transact_group"
+    )
+    @Transactional
+    fun orderCancel(@Payload orderId : String) {
+        val order = productOrderRepository.findById(orderId.toLong()).get()
+        order.cancel()
     }
 
     @Transactional

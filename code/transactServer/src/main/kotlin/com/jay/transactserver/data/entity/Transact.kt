@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 class Transact(
     @Id
     @Column(name = "trans_id")
-    val transId : String,
+    val transId : String?,
     val reqDt : LocalDateTime,
     val resDt : LocalDateTime,
     @Enumerated(EnumType.STRING)
