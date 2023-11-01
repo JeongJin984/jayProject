@@ -57,10 +57,6 @@
    - replyingKafkaTemplate으로 결제 실패를 처리(1:1로 처리)하려 했으나 많은 서버에서 실패를 처리(1:N)해야 하므로 kafkaTemplate으로 교체
    - 즉 OrderServer에서 데이터 원복만 하려 했는데 MemberServer에서도 쿠폰 데이터 원복을 처리해야해서 replying은 못씀
 
-**추가 목표**
-
-1. Kafka-Streams를 이용하여 정산 데이터 생성
-
 ---
 
 ### 검색
@@ -83,4 +79,14 @@
 
 1. ELK에 대한 이해도 높이기
 2. Kafka를 이용한 MSA 구현
+
 ---
+
+### 거래 데이터의 실시간 처리(정산)
+
+1. Kafka-Streams로 생성된 거래 데이터 선처리
+2. Spark와 Hadoop을 이용하여 어쩌구 저쩌구 해봄(아직 뭔지 모름)
+
+**목표**
+1. Data-Pipeline 구축을 통해 Data-Engineer의 업무 이해해
+
