@@ -53,7 +53,9 @@
 **목표**
 
 1. Kafka를 이용한 보상트랜잭션을 사용하여 에러 처리
-2. replyingKafkaTemplate, kafkaTemplate을 이용하여 동기식, 비동기식으로 메시지 처리
+2. replyingKafkaTemplate, kafkaTemplate을 이용하여 동기식, 비동기식으로 메시지 처리 (삭제)
+   - replyingKafkaTemplate으로 결제 실패를 처리(1:1로 처리)하려 했으나 많은 서버에서 실패를 처리(1:N)해야 하므로 kafkaTemplate으로 교체
+   - 즉 OrderServer에서 데이터 원복만 하려 했는데 MemberServer에서도 쿠폰 데이터 원복을 처리해야해서 replying은 못씀
 
 **추가 목표**
 
