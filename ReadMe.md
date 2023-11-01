@@ -48,7 +48,6 @@
 5. Transact 서버에서 거래 데이터 생성(order Topic Listening) ✅
 6. 결제 실패 (Transact에서 실패 시 보상 트랜잭션 생성) ✅
 7. Order서버에서 데이터 원복 (order-cancel Topic Listening) ✅
-   - Member 서버에서 쿠폰 정보 원복 (order-cancel Topic Listening)
   
 **목표**
 
