@@ -1,89 +1,55 @@
 package com.jay.orderserver.domain.entity
 
+import com.jay.orderserver.common.dto.ClientOrderDTO
 import jakarta.persistence.*
 import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 
-@Entity
-@Table(name = "product_order")
+@Entity(name = "OrderEntity")
+@Table(name = "order_list")
 class ProductOrder (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-    private var orderId: Long? = null,
+    @Column(name = "id")
+    private var orderLineId: Long? = null,
 
-    @Column(name = "owner_id")
-    private var ownerId: Long? = null,
+    @ManyToOne(targetEntity = Product::class)
+    @JoinColumn(name = "product_id")
+    private var product: Product? = null,
 
-    @OneToMany(mappedBy = "productOrder", fetch = FetchType.LAZY)
-    private var orderList: List<OrderList> = listOf(),
+    @ManyToOne
+    @JoinColumn(name = "product_order_id")
+    private var userOrder: UserOrder? = null,
 
-    @Column(name = "total_amounts")
-    private var totalAmounts: BigDecimal = BigDecimal(-1),
+    @Column(name = "price")
+    private var price: BigDecimal = BigDecimal(-1),
 
-    @Column(name = "order_state")
-    @Enumerated(EnumType.STRING)
-    private var orderState: OrderState = OrderState.PREPARING,
+    @Column(name = "quantity")
+    private var quantity: Int = -1,
 
-    @ManyToOne(targetEntity = ShippingInfo::class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "shipping_info_id")
-    private var shippingInfo: ShippingInfo? = null
+    @Column(name = "amount")
+    private var amount: BigDecimal = BigDecimal(-1)
 ) {
-    private fun setOrderLines(orderLists: List<OrderList>) {
-        verifyAtLeastOneOrMoreOrderLines(orderLists)
-        this.orderList = orderLists
-        calculateTotalAmounts()
-    }
-
-    private fun verifyAtLeastOneOrMoreOrderLines(orderLists: List<OrderList>?) {
-        if(orderLists.isNullOrEmpty()) {
-            throw IllegalArgumentException("no OrderLines")
+    private fun calculateAmounts() : BigDecimal {
+        if(price.compareTo(BigDecimal.ZERO) < -1) {
+            throw IllegalStateException("price is minus")
+        } else if(quantity < 0) {
+            throw IllegalStateException("quantity is minus")
         }
+        return price.multiply(BigDecimal(quantity))
     }
 
-    private fun calculateTotalAmounts() : BigDecimal {
-        this.totalAmounts = orderList.sumOf { it.getAmount() }
-        return this.totalAmounts
-    }
-
-    fun changeShippingInfo(shippingInfo: ShippingInfo): Boolean {
-        val canChange = orderState == OrderState.PREPARING
-        if(!canChange) return canChange
-        this.shippingInfo = shippingInfo
-        return canChange
-    }
-
-    fun cancel() {
-        verifyNotYetShipped()
-        this.orderState = OrderState.CANCELED
-    }
-
-    fun confirm() {
-        this.orderState = OrderState.PAYMENT_WAITING
-    }
-
-    fun paymentSucceed() {
-        this.orderState = OrderState.PREPARING
-    }
-
-    fun deliverStarted() {
-        this.orderState = OrderState.DELIVERING
-    }
-
-    fun deliverSucceed() {
-        this.orderState = OrderState.DELIVERY_COMPLETED
-    }
-
-    fun deliverFailed() {
-        this.orderState = OrderState.DELIVERY_FAILED
-    }
-
-    private fun verifyNotYetShipped() {
-        if(orderState != OrderState.PAYMENT_WAITING && orderState != OrderState.PREPARING)
-            throw IllegalArgumentException("already shipped")
+    fun getAmount() : BigDecimal {
+        if(amount == price.multiply(BigDecimal(quantity))) throw IllegalArgumentException("Amount has to be price * quantity")
+        return this.amount
     }
 }
 
-enum class OrderState {
-    PAYMENT_WAITING, PREPARING, SHIPPED, DELIVERING, DELIVERY_COMPLETED, DELIVERY_FAILED, CANCELED;
+fun createNewProductOrder(product: Product, userOrder: UserOrder) : ProductOrder {
+    return ProductOrder(
+        null,
+        product,
+        userOrder,
+        product.price
+    )
 }
