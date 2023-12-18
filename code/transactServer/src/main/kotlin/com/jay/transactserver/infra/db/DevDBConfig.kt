@@ -31,7 +31,7 @@ class DevDBConfig {
     fun entityManagerFactory(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
         val adaptor = HibernateJpaVendorAdapter()
         adaptor.setShowSql(true)
-        adaptor.setGenerateDdl(false)
+        adaptor.setGenerateDdl(true)
 
         val entityManagerFactoryBean = builder
             .dataSource(datasource())

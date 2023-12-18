@@ -35,7 +35,7 @@ class TransactService(
     @KafkaListener(
         id = "saleListener",
         topicPartitions = [
-            TopicPartition(topic = "healthcheck", partitions = ["0"], partitionOffsets = [PartitionOffset(partition = "1", initialOffset = "0")])
+            TopicPartition(topic = "order", partitions = ["0", "1"])
         ],
         autoStartup = "\${listen.auto.start:true}",
         concurrency = "\${listen.concurrency:2}",
@@ -46,7 +46,7 @@ class TransactService(
         if(orderDTO.totalAmount.toDouble() < 0) {
             kafkaTemplate.send("order-cancel", order)
         } else {
-            transactRepository.save(Transact(null, LocalDateTime.now(), LocalDateTime.now(), TransactStatus.SALE, "test", "1111", BigDecimal(1),BigDecimal(2), BigDecimal(3), TransType.BUY))
+            transactRepository.save(Transact(orderDTO.ownerId + orderDTO.orderId + System.currentTimeMillis(), LocalDateTime.now(), LocalDateTime.now(), TransactStatus.SALE, "test", "1111", BigDecimal(1),BigDecimal(2), BigDecimal(3), TransType.BUY))
         }
     }
 }

@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7be7c411-028e-44de-a89f-a10a987da3e7" name="Changes" comment="" />
+    <list default="true" id="7be7c411-028e-44de-a89f-a10a987da3e7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/code/memberServer/src/main/kotlin/com/jay/memberserver/domain/entity/MemberType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/business/dto/OrderDTO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/business/dto/ProductDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/memberServer/src/main/kotlin/com/jay/memberserver/domain/entity/JayMarketMember.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/memberServer/src/main/kotlin/com/jay/memberserver/domain/entity/MemberEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/business/api/OrderAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/business/api/OrderAPI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/business/service/OrderService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/business/service/OrderService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/domain/entity/OrderList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/domain/entity/OrderList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/domain/entity/ProductOrder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/orderServer/src/main/kotlin/com/jay/orderserver/domain/entity/ProductOrder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/orderServer/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/code/orderServer/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/transactServer/src/main/kotlin/com/jay/transactserver/business/service/TransactService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/transactServer/src/main/kotlin/com/jay/transactserver/business/service/TransactService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/transactServer/src/main/kotlin/com/jay/transactserver/data/entity/Transact.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/transactServer/src/main/kotlin/com/jay/transactserver/data/entity/Transact.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/transactServer/src/main/kotlin/com/jay/transactserver/infra/db/DevDBConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/transactServer/src/main/kotlin/com/jay/transactserver/infra/db/DevDBConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/transactServer/src/main/resources/datasource/dev.master.datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/code/transactServer/src/main/resources/datasource/dev.master.datasource.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,10 +69,24 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/work/java/project/jayMarket/code/orderServer",
+    "last_opened_file_path": "E:/work/java/project/jayMarket/code/memberServer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "a6a998d122bb4b4b5364dcf9e64d2530",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="MemberServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="memberServer.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jay.memberserver.MemberServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -65,6 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696819000839</updated>
       <workItem from="1696819002004" duration="43000" />
+      <workItem from="1702794640933" duration="620000" />
     </task>
     <servers />
   </component>

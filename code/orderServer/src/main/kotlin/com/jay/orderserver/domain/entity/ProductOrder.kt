@@ -10,24 +10,23 @@ class ProductOrder (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private var orderId: Long? = null,
+    var orderId: Long? = null,
 
     @Column(name = "owner_id")
-    private var ownerId: Long? = null,
+    var ownerId: Long? = null,
 
     @OneToMany(mappedBy = "productOrder", fetch = FetchType.LAZY)
-    private var orderList: List<OrderList> = listOf(),
+    var orderList: List<OrderList> = listOf(),
 
     @Column(name = "total_amounts")
-    private var totalAmounts: BigDecimal = BigDecimal(-1),
+    var totalAmounts: BigDecimal = BigDecimal(-1),
 
     @Column(name = "order_state")
-    @Enumerated(EnumType.STRING)
-    private var orderState: OrderState = OrderState.PREPARING,
+    var orderState: OrderState = OrderState.PREPARING,
 
     @ManyToOne(targetEntity = ShippingInfo::class, fetch = FetchType.LAZY)
     @JoinColumn(name = "shipping_info_id")
-    private var shippingInfo: ShippingInfo? = null
+    var shippingInfo: ShippingInfo? = null
 ) {
     private fun setOrderLines(orderLists: List<OrderList>) {
         verifyAtLeastOneOrMoreOrderLines(orderLists)

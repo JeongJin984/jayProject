@@ -9,12 +9,12 @@ import java.time.LocalDateTime
 class Transact(
     @Id
     @Column(name = "trans_id")
-    val transId : String?,
-    val reqDt : LocalDateTime,
-    val resDt : LocalDateTime,
+    var transId : String? = null,
+    var reqDt : LocalDateTime,
+    var resDt : LocalDateTime,
     @Enumerated(EnumType.STRING)
-    val resCode: TransactStatus,
-    val description : String,
+    var resCode: TransactStatus,
+    var description : String,
     var cardNo : String,
     var serviceFee : BigDecimal,
     var totalAmount : BigDecimal,

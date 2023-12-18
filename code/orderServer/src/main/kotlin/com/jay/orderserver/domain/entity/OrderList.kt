@@ -39,7 +39,7 @@ class OrderList (
     }
 
     public fun getAmount() : BigDecimal {
-        if(amount == price.multiply(BigDecimal(quantity))) throw IllegalArgumentException("Amount has to be price * quantity")
+        if(amount != price.multiply(BigDecimal(quantity))) throw IllegalArgumentException("Amount has to be price * quantity")
         return this.amount
     }
 
