@@ -4,7 +4,7 @@ import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 
 @Embeddable
-abstract class Receiver (
+class Receiver (
     @Column(name =  "name")
     var name: String,
 

@@ -4,7 +4,7 @@ import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 
 @Embeddable
-abstract class Address(
+class Address(
     @Column(name = "zip_code")
     var zipCode: String,
 

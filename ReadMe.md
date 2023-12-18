@@ -41,17 +41,20 @@
 
 ### 주문 및 결제 
 
-1. 주문 데이터 생성
-2. 주문 확정
-3. 결제 데이터 생성
-4. 결제 확정
-   - 결제 실패
-   - 주문 거절
+1. 주문 데이터 생성 ✅
+2. 주문 확정 ✅
+3. 결제 데이터 생성 ✅
+4. 결제 확정 ( 쿠폰 사용을 통한 총 금액 할인 ) ✅
+5. Transact 서버에서 거래 데이터 생성(order Topic Listening) ✅
+6. 결제 실패 (Transact에서 실패 시 보상 트랜잭션 생성) ✅
+7. Order서버에서 데이터 원복 (order-cancel Topic Listening) ✅
   
 **목표**
 
 1. Kafka를 이용한 보상트랜잭션을 사용하여 에러 처리
-2. replyingKafkaTemplate, kafkaTemplate을 이용하여 동기식, 비동기식으로 메시지 처리
+2. replyingKafkaTemplate, kafkaTemplate을 이용하여 동기식, 비동기식으로 메시지 처리 (삭제)
+   - replyingKafkaTemplate으로 결제 실패를 처리(1:1로 처리)하려 했으나 많은 서버에서 실패를 처리(1:N)해야 하므로 kafkaTemplate으로 교체
+   - 즉 OrderServer에서 데이터 원복만 하려 했는데 MemberServer에서도 쿠폰 데이터 원복을 처리해야해서 replying은 못씀
 
 ---
 
@@ -74,5 +77,15 @@
 **목표**
 
 1. ELK에 대한 이해도 높이기
+2. Kafka를 이용한 MSA 구현
 
 ---
+
+### 거래 데이터의 실시간 처리(정산)
+
+1. Kafka-Streams로 생성된 거래 데이터 선처리
+2. Spark와 Hadoop을 이용하여 어쩌구 저쩌구 해봄(아직 뭔지 모름)
+
+**목표**
+1. Data-Pipeline 구축을 통해 Data-Engineer의 업무 이해해
+
