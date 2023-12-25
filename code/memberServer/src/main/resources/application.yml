@@ -1,0 +1,5 @@
+security:
+  rsa:
+    gen: false
+    publicKeyPath: "E:\\work\\java\\project\\jayMarket\\resource\\key\\jwtPublicKey.pem"
+    privateKeyPath: "E:\\work\\java\\project\\jayMarket\\resource\\key\\jwtPrivateKey.pem"

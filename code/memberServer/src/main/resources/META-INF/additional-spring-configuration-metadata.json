@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "security.rsa.publicKeyPath",
+      "type": "java.lang.String",
+      "description": "Description for security.rsa.publicKeyPath."
+    },
+    {
+      "name": "security.rsa.privateKeyPath",
+      "type": "java.lang.String",
+      "description": "Description for security.rsa.privateKeyPath."
+    }
+  ] }
