@@ -6,7 +6,6 @@ import com.jay.memberserver.common.dto.ClientResponse;
 import com.jay.memberserver.common.dto.SignupInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,7 @@ import java.security.spec.InvalidKeySpecException;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/member")
-public class MemberController {
+public class JayMemberController {
     private final JayTokenService jayTokenService;
     private final MemberService memberService;
 
@@ -53,7 +52,6 @@ public class MemberController {
     public ResponseEntity<ClientResponse> signup(
             @RequestBody SignupInfo signupInfo
     ) {
-        ClientResponse body;
         try {
             memberService.signup(signupInfo);
             return ResponseEntity.ok(

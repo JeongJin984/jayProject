@@ -25,8 +25,7 @@ class UserOrder (
     @Enumerated(EnumType.STRING)
     private var orderState: OrderState = OrderState.PREPARING,
 
-    @ManyToOne(targetEntity = ShippingInfo::class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "shipping_info_id")
+    @Embedded
     private var shippingInfo: ShippingInfo? = null
 ) {
     private fun setOrderLines(productOrders: List<ProductOrder>) {

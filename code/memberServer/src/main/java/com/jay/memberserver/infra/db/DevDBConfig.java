@@ -33,11 +33,11 @@ public class DevDBConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(true);
-        adapter.setGenerateDdl(true);
+        adapter.setGenerateDdl(false);
 
         LocalContainerEntityManagerFactoryBean entityManager = builder
                 .dataSource(datasource())
-                .packages("com.jay.orderserver.domain.entity")
+                .packages("com.jay.memberserver.domain.entity")
                 .persistenceUnit("entityManager")
                 .build();
 

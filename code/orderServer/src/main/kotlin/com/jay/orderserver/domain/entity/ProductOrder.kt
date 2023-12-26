@@ -1,12 +1,11 @@
 package com.jay.orderserver.domain.entity
 
-import com.jay.orderserver.common.dto.ClientOrderDTO
 import jakarta.persistence.*
 import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 
 @Entity(name = "OrderEntity")
-@Table(name = "order_list")
+@Table(name = "product_order")
 class ProductOrder (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

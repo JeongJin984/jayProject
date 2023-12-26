@@ -14,6 +14,6 @@ public class SignupInfo {
     private String loginId;
 
     public Member buildMember() {
-        return new Member(UUID.randomUUID().toString(), MemberType.Child, username, loginId);
+        return new Member(UUID.randomUUID().toString(), MemberType.NONE, username, loginId);
     }
 }

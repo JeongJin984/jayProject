@@ -2,21 +2,21 @@ package com.jay.orderserver.domain.entity
 
 import com.jay.orderserver.domain.entity.Address
 import com.jay.orderserver.domain.entity.Receiver
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
-@Entity
-@Table(name = "shipping_info")
+@Embeddable
 class ShippingInfo (
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    val shippingInfoId: Long? = null,
+    @Embedded
     val receiver: Receiver? = null,
-    val address: Address? = null
+
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name="zipCode", column=Column(name = "shipping_zipcode")),
+        AttributeOverride(name="address1", column=Column(name = "shipping_addr1")),
+        AttributeOverride(name="address1", column=Column(name = "shipping_addr2"))
+    )
+    val address: Address? = null,
+
+    val message: String? = null
 ) {
 }
