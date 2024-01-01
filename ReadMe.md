@@ -48,6 +48,8 @@
 5. Transact 서버에서 거래 데이터 생성(order Topic Listening) ✅
 6. 결제 실패 (Transact에서 실패 시 보상 트랜잭션 생성) ✅
 7. Order서버에서 데이터 원복 (order-cancel Topic Listening) ✅
+
+> 현재 도메인 재설계로 인해 없어짐
   
 **목표**
 
@@ -58,34 +60,11 @@
 
 ---
 
-### 검색
+### 상품 정보 조회
 
-1. ElasticSearch를 이용하여 상품 데이터 검색 기능 개발
-2. 직접 Index 생성하여 상품 데이터 삽입
-3. 형태소 분석기(nori)를 이용하여 검색 성능 향상
-
-**목표**
-
-1. ElasticSearch에 대한 이해도 높이기
-
----
-
-### 로그 데이터 저장 후 분석
-
-1. FileBeat + LogStash + ElasticSearch + Kibana를 이용하여 로그 생성, 저장, 분석 까지의 시퀀스를 구현
+1. 상품 정보 조회
+2. grpc를 활용하여 Review 서버, Member 서버에서 필요한 데이터 수집
 
 **목표**
 
-1. ELK에 대한 이해도 높이기
-2. Kafka를 이용한 MSA 구현
-
----
-
-### 거래 데이터의 실시간 처리(정산)
-
-1. Kafka-Streams로 생성된 거래 데이터 선처리
-2. Spark와 Hadoop을 이용하여 어쩌구 저쩌구 해봄(아직 뭔지 모름)
-
-**목표**
-1. Data-Pipeline 구축을 통해 Data-Engineer의 업무 이해해
-
+1. grpc를 활용하여 REST 방식과 비교하여 장단점 비교
