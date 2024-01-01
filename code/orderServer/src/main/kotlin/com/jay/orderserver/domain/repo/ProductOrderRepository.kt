@@ -1,7 +1,10 @@
 package com.jay.orderserver.domain.repo
 
-import com.jay.orderserver.domain.entity.ProductOrder
+import com.jay.orderserver.domain.order.OrderNo
+import com.jay.orderserver.domain.order.ProductOrder
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
-interface ProductOrderRepository : JpaRepository<ProductOrder, Long> {
+@Repository
+interface ProductOrderRepository : JpaRepository<ProductOrder, OrderNo> {
 }

@@ -18,7 +18,7 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate
 
 @Configuration
-@Profile("dev")
+@Profile("test")
 class KafkaProducerConfig {
 
     @Bean

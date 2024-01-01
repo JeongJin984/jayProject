@@ -1,48 +1,41 @@
-package com.jay.orderserver.domain.entity
+package com.jay.orderserver.domain.order
 
 import jakarta.persistence.*
+import java.io.Serializable
 import java.lang.IllegalArgumentException
 import java.math.BigDecimal
+import java.time.LocalDateTime
 
 @Entity
-@Table(name = "order_confirm")
-class UserOrder (
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-    private var orderId: Long? = null,
+@Table(name = "product_order")
+@Access(AccessType.FIELD)
+class ProductOrder (
+    @EmbeddedId
+    private var orderLineId: OrderNo,
 
-    @Column(name = "owner_id")
-    private var ownerId: Long? = null,
-
-    @OneToMany(mappedBy = "productOrder", fetch = FetchType.LAZY)
-    private var productOrder: List<ProductOrder> = listOf(),
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "order_line", joinColumns = [JoinColumn(name = "order_number")])
+    @OrderColumn(name = "line_idx")
+    private var orderLines: List<OrderLine> = listOf(),
 
     @Column(name = "total_amounts")
-    private var totalAmounts: BigDecimal = BigDecimal(-1),
+    private var totalAmount: BigDecimal,
+
+    @Embedded
+    private var shippingInfo: ShippingInfo? = null,
 
     @Column(name = "order_state")
     @Enumerated(EnumType.STRING)
     private var orderState: OrderState = OrderState.PREPARING,
 
-    @Embedded
-    private var shippingInfo: ShippingInfo? = null
+    @Column(name = "order_date")
+    private var orderDate: LocalDateTime
 ) {
-    private fun setOrderLines(productOrders: List<ProductOrder>) {
-        verifyAtLeastOneOrMoreOrderLines(productOrders)
-        this.productOrder = productOrders
-        calculateTotalAmounts()
-    }
 
-    private fun verifyAtLeastOneOrMoreOrderLines(productOrders: List<ProductOrder>?) {
-        if(productOrders.isNullOrEmpty()) {
+    private fun verifyAtLeastOneOrMoreOrderLines() {
+        if(orderLines.isEmpty()) {
             throw IllegalArgumentException("no OrderLines")
         }
-    }
-
-    private fun calculateTotalAmounts() : BigDecimal {
-        this.totalAmounts = productOrder.sumOf { it.getAmount() }
-        return this.totalAmounts
     }
 
     fun changeShippingInfo(shippingInfo: ShippingInfo): Boolean {
@@ -81,8 +74,27 @@ class UserOrder (
         if(orderState != OrderState.PAYMENT_WAITING && orderState != OrderState.PREPARING)
             throw IllegalArgumentException("already shipped")
     }
+
+    private fun calculateTotalAmounts() {
+        this.totalAmount = orderLines.sumOf { it.getAmount() }
+    }
 }
+
 
 enum class OrderState {
     PAYMENT_WAITING, PREPARING, SHIPPED, DELIVERING, DELIVERY_COMPLETED, DELIVERY_FAILED, CANCELED;
+}
+
+@Embeddable
+class OrderNo internal constructor (
+    @Column(name = "order_number")
+    private var number : String
+) : Serializable {
+    public fun getNumber() : String {
+        return number
+    }
+}
+
+fun orderNoOf(orderNo : String) : OrderNo {
+    return OrderNo(orderNo)
 }

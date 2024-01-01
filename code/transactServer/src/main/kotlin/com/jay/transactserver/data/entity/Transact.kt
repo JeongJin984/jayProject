@@ -9,18 +9,18 @@ import java.time.LocalDateTime
 class Transact(
     @Id
     @Column(name = "trans_id")
-    var transId : String? = null,
-    var reqDt : LocalDateTime,
-    var resDt : LocalDateTime,
+    private var transId : String? = null,
+    private var reqDt : LocalDateTime,
+    private var resDt : LocalDateTime,
     @Enumerated(EnumType.STRING)
-    var resCode: TransactStatus,
-    var description : String,
-    var cardNo : String,
-    var serviceFee : BigDecimal,
-    var totalAmount : BigDecimal,
-    var serviceAmount: BigDecimal,
+    private var resCode: TransactStatus,
+    private var description : String,
+    private var cardNo : String,
+    private var serviceFee : BigDecimal,
+    private var totalAmount : BigDecimal,
+    private var serviceAmount: BigDecimal,
     @Enumerated(EnumType.STRING)
-    var transType: TransType
+    private var transType: TransType
 ) {
 }
 

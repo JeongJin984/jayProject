@@ -35,7 +35,7 @@ class DevDBConfig {
 
         val entityManagerFactoryBean = builder
             .dataSource(datasource())
-            .packages("com.jay.orderserver.domain.entity")
+            .packages("com.jay.orderserver.domain.order", "com.jay.orderserver.domain.product")
             .persistenceUnit("entityManager")
             .build()
 

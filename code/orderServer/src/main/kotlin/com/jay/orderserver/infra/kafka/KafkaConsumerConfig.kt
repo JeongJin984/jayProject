@@ -22,7 +22,7 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer
 
 
 @Configuration
-@Profile("dev")
+@Profile("test")
 class KafkaConsumerConfig {
     @Bean
     fun kafkaListenerContainerFactory() : KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> {

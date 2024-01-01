@@ -1,7 +1,5 @@
-package com.jay.orderserver.domain.entity
+package com.jay.orderserver.domain.order
 
-import com.jay.orderserver.domain.entity.Address
-import com.jay.orderserver.domain.entity.Receiver
 import jakarta.persistence.*
 
 @Embeddable
@@ -13,7 +11,7 @@ class ShippingInfo (
     @AttributeOverrides(
         AttributeOverride(name="zipCode", column=Column(name = "shipping_zipcode")),
         AttributeOverride(name="address1", column=Column(name = "shipping_addr1")),
-        AttributeOverride(name="address1", column=Column(name = "shipping_addr2"))
+        AttributeOverride(name="address2", column=Column(name = "shipping_addr2"))
     )
     val address: Address? = null,
 

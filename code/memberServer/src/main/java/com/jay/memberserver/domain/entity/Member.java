@@ -1,12 +1,10 @@
 package com.jay.memberserver.domain.entity;
 
 import com.jay.memberserver.common.dto.MemberInfo;
-import com.jay.memberserver.common.dto.SignupInfo;
 import com.jay.memberserver.domain.converter.MemberTypeConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.data.convert.WritingConverter;
 
 @Entity(name = "jayMember")
 @Table(name = "member")

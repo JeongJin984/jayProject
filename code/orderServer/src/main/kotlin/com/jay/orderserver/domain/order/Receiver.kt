@@ -1,4 +1,4 @@
-package com.jay.orderserver.domain.entity
+package com.jay.orderserver.domain.order
 
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
