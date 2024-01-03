@@ -1,6 +1,6 @@
 package com.jay.orderserver
 
-import com.jay.orderserver.domain.order.ShippingInfo
+import com.jay.orderserver.domain.entity.ShippingInfo
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
