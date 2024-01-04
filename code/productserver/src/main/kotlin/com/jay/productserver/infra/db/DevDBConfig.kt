@@ -1,4 +1,4 @@
-package com.jay.orderserver.infra.db
+package com.jay.productserver.infra.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -15,19 +15,20 @@ import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource
 
 @Configuration
-@Profile("dev")
 @EnableJpaRepositories(
-    basePackages = ["com.jay.orderserver.domain.repo"],
+    basePackages = ["com.jay.productserver.domain.repo"],
     entityManagerFactoryRef = "entityManagerFactory",
     transactionManagerRef = "transactionManager"
 )
 class DevDBConfig {
     @Bean("datasource")
+    @Profile("dev")
     fun datasource(): DataSource {
         return HikariDataSource(HikariConfig("/datasource/dev.master.datasource.properties"))
     }
 
     @Bean("entityManagerFactory")
+    @Profile("dev")
     fun entityManagerFactory(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
         val adaptor = HibernateJpaVendorAdapter()
         adaptor.setShowSql(true)
@@ -35,7 +36,7 @@ class DevDBConfig {
 
         val entityManagerFactoryBean = builder
             .dataSource(datasource())
-            .packages("com.jay.orderserver.domain.order", "com.jay.orderserver.domain.entity")
+            .packages("com.jay.productserver.domain.entity")
             .persistenceUnit("entityManager")
             .build()
 
@@ -46,6 +47,7 @@ class DevDBConfig {
     }
 
     @Bean("transactionManager")
+    @Profile("dev")
     fun jayMarketTransactionManager(
         @Qualifier("entityManagerFactory") factoryBean: LocalContainerEntityManagerFactoryBean): PlatformTransactionManager {
         return JpaTransactionManager(factoryBean.`object`!!)

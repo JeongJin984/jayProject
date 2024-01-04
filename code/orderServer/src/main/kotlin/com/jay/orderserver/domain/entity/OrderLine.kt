@@ -1,5 +1,8 @@
 package com.jay.orderserver.domain.entity
 
+import jakarta.persistence.Access
+import jakarta.persistence.AccessType
+import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import java.lang.IllegalArgumentException
 import java.math.BigDecimal
@@ -9,6 +12,7 @@ class OrderLine internal constructor(
     private var productId: String,
     private var price: BigDecimal,
     private var quantity: Int,
+    @Column(name = "amount")
     private var amount: BigDecimal
 ) {
 

@@ -1,14 +1,14 @@
-package com.jay.orderserver.domain.product
+package com.jay.productserver.domain.entity
 
+import com.jay.productserver.common.dto.ProductOrderInfo
 import jakarta.persistence.*
-import java.awt.Image
 import java.io.Serializable
 import java.math.BigDecimal
 
 @Entity(name = "ProductEntity")
 @Table(name = "product")
 @Access(AccessType.FIELD)
-class Product (
+class Product(
     @EmbeddedId
     val productId: ProductId,
 
@@ -18,7 +18,7 @@ class Product (
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "product_category",
         joinColumns = [JoinColumn(name = "product_id")])
-    private var categories: Set<CategoryId> = setOf(),
+    private var categories: List<CategoryId> = listOf(),
 
     @OneToMany(
         cascade = [CascadeType.PERSIST, CascadeType.REMOVE],
@@ -44,6 +44,17 @@ class Product (
         if(images.isEmpty()) return null
         return images[0].getPath()
     }
+
+    fun createProductOrderInfo() : ProductOrderInfo {
+        return ProductOrderInfo(
+            productId = productId.getProductId(),
+            name = name,
+            category = categories.map { it.getValue() },
+            productImage = images.map { it.getPath() },
+            price = price.toInt(),
+            description = description
+        )
+    }
 }
 
 @Embeddable
@@ -59,3 +70,4 @@ class ProductId internal constructor (
 fun productIdOf(id: String) : ProductId {
     return ProductId(id)
 }
+

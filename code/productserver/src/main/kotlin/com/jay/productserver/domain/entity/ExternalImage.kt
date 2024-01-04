@@ -1,4 +1,4 @@
-package com.jay.orderserver.domain.product
+package com.jay.productserver.domain.entity
 
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
