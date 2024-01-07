@@ -27,6 +27,8 @@ dependencies {
 	implementation("org.springframework.kafka:spring-kafka:3.0.11")
 	implementation("io.grpc:grpc-stub:1.60.1")
 	implementation("io.grpc:grpc-protobuf:1.60.1")
+	implementation("net.devh:grpc-server-spring-boot-starter")
+	implementation(files("/lib/jayProto-1.0.jar"))
 
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
