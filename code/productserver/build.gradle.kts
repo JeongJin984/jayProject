@@ -25,6 +25,10 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.kafka:spring-kafka:3.0.11")
+	implementation("io.grpc:grpc-stub:1.60.1")
+	implementation("io.grpc:grpc-protobuf:1.60.1")
+	implementation("io.grpc:grpc-netty-shaded:1.60.1")
+	implementation(files("/lib/jayProto-1.0.jar"))
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

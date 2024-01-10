@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.jay.proto.lib";
+option java_outer_classname = "OrderServiceProto";
+
+service OrderService {
+  rpc GetOrderCount (ProductIdProto) returns (ProductOrderInfoProto) {
+  }
+}
+
+message ProductIdProto {
+  string productId = 1;
+}
+
+message ProductOrderInfoProto {
+  int32 orderCount = 1;
+}
