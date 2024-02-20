@@ -1,4 +1,4 @@
-## 목적
+![infraArchitecutre](https://github.com/JeongJin984/jayProject/assets/57170922/7257f053-6ac9-4bfd-afdb-50aea0844182)## 목적
 
 > MSA 환경을 유사하게 구현하여 몇가지 목표를 환경에 맞춰 학습
 
@@ -23,12 +23,11 @@
 
 ## Infra
 
-- Elastic Search
-- Kibana
-- LogStash
 - Kafka
 - Docker (VMware -> Docker : 네트워크 Issue)
 - AWS(Optional)
+
+![infraArchitecutre](https://github.com/JeongJin984/jayProject/assets/57170922/877f0abf-8c53-475f-9566-6659097e051b)
 
 ## 특이사항
 
